@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.edureka.hari.lms.model.LibraryBranch;
 
+import java.util.List;
+
 @Repository
 public interface LibraryRepository extends JpaRepository<LibraryBranch, Long> {
 

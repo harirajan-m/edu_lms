@@ -5,7 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import com.edureka.hari.lms.model.Genre;
 
+import java.util.List;
+
 @Repository
 public interface GenreRepository extends JpaRepository<Genre, Long> {
+
+
 
 }

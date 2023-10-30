@@ -1,12 +1,6 @@
 package com.edureka.hari.lms.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -20,25 +14,33 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "genre_id")
     private Genre genre;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "library_branch_id")
+	private LibraryBranch libraryBranch;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "card_no")
+	private Borrower borrower;
 
 	public Book() {
 		super();
 	}
 
-	public Book(Long id, String title, String isbn, Author author, Genre genre) {
-		super();
+	public Book(Long id, String title, String isbn, Author author, Genre genre, LibraryBranch libraryBranch, Borrower borrower) {
 		this.id = id;
 		this.title = title;
 		this.isbn = isbn;
 		this.author = author;
 		this.genre = genre;
+		this.libraryBranch = libraryBranch;
+		this.borrower = borrower;
 	}
 
 	public Long getId() {
@@ -81,15 +83,20 @@ public class Book {
 		this.genre = genre;
 	}
 
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", isbn=" + isbn + ", author=" + author + ", genre=" + genre
-				+ "]";
+	public LibraryBranch getLibraryBranch() {
+		return libraryBranch;
 	}
 
-    // getters and setters
-	
-	
-    
+	public void setLibraryBranch(LibraryBranch libraryBranch) {
+		this.libraryBranch = libraryBranch;
+	}
+
+	public Borrower getBorrower() {
+		return borrower;
+	}
+
+	public void setBorrower(Borrower borrower) {
+		this.borrower = borrower;
+	}
 }
 
